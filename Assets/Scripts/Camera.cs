@@ -3,17 +3,16 @@ using System.Collections;
 
 public class Camera : MonoBehaviour 
 {
-
 	private GameObject selectedUnit = null;
 
-
 	// Use this for initialization
-	void Start () {
-	
+	void Start()
+	{
+		
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	void Update() 
 	{
 		if(Input.GetMouseButtonDown (0)) 
 		{
@@ -38,11 +37,15 @@ public class Camera : MonoBehaviour
 			GameObject obj = hit.collider.gameObject;
 			
 			if(obj != null)
-			{
+			{	
 				if(obj.tag == "Unit")
 				{
-					//obj.GetComponent<Unit>().destination = new Vector2(0,0); <- Test
-					// Schreibe Einheit in Liste selektierter Einheiten
+					selectedUnit = obj;
+				}
+
+				if(obj.tag == "Building")
+				{
+					obj.GetComponent<Building>().select();
 					selectedUnit = obj;
 				}
 			}

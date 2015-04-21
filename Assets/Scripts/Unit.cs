@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Unit : MonoBehaviour 
+public class Unit : Selectable 
 {
+	public int[] cost = new int[3];
+
 	private int speed = 5;
 	public int life = 20;
 	NavMeshAgent agent;
-	public Transform target;
 
 	public Vector3 destination;
 	
