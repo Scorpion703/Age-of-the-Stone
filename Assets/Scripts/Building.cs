@@ -7,6 +7,10 @@ public class Building : Selectable
 	public bool isStorage = true;
 	public GameObject[] creatableUnits;
 	public float spawnDistance;
+	public GameObject cam;
+
+	private float selectedX = 0;
+	private float selectedY = 0;
 
 	private int createId = -1;
 
@@ -45,13 +49,13 @@ public class Building : Selectable
 	 	{
 	 		if(createId >= 0)
 	 		{
-	 			GUI.Box(new Rect(20, 40, 100, 40), "Einheit bereit \nin " + (10-x) + "s" );
+	 			GUI.Box(new Rect(selectedX, Screen.height - selectedY, 100, 40), "Einheit bereit \nin " + (10-x) + "s" );
 	 		}
 	 		else
 	 		{
 	 			for(int i=0; i<creatableUnits.Length; i++)
 			 	{
-			 		if(GUI.Button(new Rect(20, 40 + (i*30), 60, 20), creatableUnits[i].name)) 
+			 		if(GUI.Button(new Rect(selectedX, Screen.height -selectedY + (i*30), 60, 20), creatableUnits[i].name)) 
 				 	{
 			            createId = i;
 			        }
@@ -60,9 +64,18 @@ public class Building : Selectable
 	 	}
 	}
 
-	public void select()
+	public void select(float x, float y)
 	{
+		selectedX = x;
+		selectedY = y;
 		selected = true;
+	}
+
+	public void deselect()
+	{
+		selectedX = 0;
+		selectedY = 0;
+		selected = false;
 	}
 
 
