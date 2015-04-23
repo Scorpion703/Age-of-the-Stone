@@ -48,6 +48,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Building.cs" />
      <Compile Include="Assets\Scripts\CameraBehavior.cs" />
+     <Compile Include="Assets\Scripts\Player.cs" />
+     <Compile Include="Assets\Scripts\Resource.cs" />
      <Compile Include="Assets\Scripts\Selectable.cs" />
      <Compile Include="Assets\Scripts\Unit.cs" />
  <Reference Include="UnityEngine.UI">

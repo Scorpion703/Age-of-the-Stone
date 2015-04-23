@@ -7,7 +7,6 @@ public class Building : Selectable
 	public bool isStorage = true;
 	public GameObject[] creatableUnits;
 	public float spawnDistance;
-	public GameObject cam;
 
 	private float selectedX = 0;
 	private float selectedY = 0;
@@ -34,6 +33,7 @@ public class Building : Selectable
 				creationPoint.z -= spawnDistance;
 
 				target.transform.position = creationPoint;
+				target.GetComponent<Unit>().buildingMain = buildingMain;
 
 				Instantiate(target);
 				
@@ -57,28 +57,34 @@ public class Building : Selectable
 			 	{
 			 		if(GUI.Button(new Rect(selectedX, Screen.height -selectedY + (i*30), 60, 20), creatableUnits[i].name)) 
 				 	{
-			            createId = i;
+			            Unit unit = creatableUnits[i].GetComponent<Unit>();
+			            if(buildingMain.GetComponent<Player>().cost(unit.food, unit.wood, unit.stone))
+			            {
+			            	createId = i;
+			            }
 			        }
 			 	}
 	 		}
 	 	}
 	}
 
-	public void select(float x, float y)
+	public override void select(float x, float y)
 	{
-		selectedX = x;
-		selectedY = y;
-		selected = true;
+		if(!selected)
+		{
+			selectedX = x;
+			selectedY = y;
+			selected = true;
+		}
 	}
 
-	public void deselect()
+	public override void deselect()
 	{
-		selectedX = 0;
-		selectedY = 0;
-		selected = false;
+		if(selected)
+		{
+			selectedX = 0;
+			selectedY = 0;
+			selected = false;
+		}
 	}
-
-
-
-
 }
