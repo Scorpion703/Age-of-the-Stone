@@ -23,7 +23,7 @@ public class Unit : Selectable
 	// Update is called once per frame
 	void Update() 
 	{
-		agent.SetDestination (destination);
+		agent.SetDestination(destination);
 	}
 
 	public override void  move(Vector3 dest)

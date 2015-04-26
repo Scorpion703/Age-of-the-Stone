@@ -66,6 +66,7 @@ public class CameraBehavior : MonoBehaviour
 						deselectAll();
 						selected.Add(obj.GetComponent<Unit>());
 						selected[0].select(Input.mousePosition.x, Input.mousePosition.y);
+					
 					}
 					if(obj.GetComponent<Building>() != null)
 					{
@@ -78,13 +79,18 @@ public class CameraBehavior : MonoBehaviour
 						}
 						selected.Add(obj.GetComponent<Building>());
 						selected[0].select(Input.mousePosition.x, Input.mousePosition.y);
+						
 					}
 				}
-
-				if(selected.Count == 0)
+				else
 				{
+					deselectAll();
 					Debug.Log("Nothing selected");
 				}
+			}
+			else
+			{
+				deselectAll();
 			}
 		}
 	}
